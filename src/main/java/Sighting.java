@@ -60,6 +60,15 @@ public class Sighting{
       .getKey();
     }
   }
+  public void join(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "INSERT INTO animals_sightings (animal_id, sighting_id) VALUES (:animal_id, :sighting_id)";
+      con.createQuery(sql)
+      .addParameter("animal_id", this.animal_id)
+      .addParameter("sighting_id", this.id)
+      .executeUpdate();
+    }
+  }
   public static List<Sighting> all(){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT id, animal_id, location, ranger_name, time FROM sightings";

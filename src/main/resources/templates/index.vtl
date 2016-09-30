@@ -1,0 +1,44 @@
+<h2>Hello Ranger</h2>
+
+<button type="button" name="animal-form">Add New Animal</button>
+<button type="button" name="endangered-animal-form">Add New Endangered Animal</button>
+
+<div id="animal-form">
+
+  <form action="/animal/new" method="post">
+    <label for="ranger_name">Your Name</label>
+    <input type="text" name="ranger_name"><br>
+    <label for="location">Location Of Sighting</label>
+    <input type="text" name="location"><br>
+    <label for="name">Animal Species</label>
+    <input type="text" name="name" id="name"><br>
+    <button type="submit" name="new-animal-button">Log Animal</button>
+  </form>
+</div>
+
+<div id="endangered-animal-form">
+  <form action="/endangeredanimal/new" method="post">
+    <label for="ranger_name">Your Name</label>
+    <input type="text" name="ranger_name"><br>
+    <label for="location">Location Of Sighting</label>
+    <input type="text" name="location"><br>
+    <label for="name">Endangered Animal Species</label>
+    <input type="text" name="name" id="name"><br>
+    <h4>Health Status</h4>
+    <label for="health">Healthy</label>
+    <input type="radio" name="health" value="Healthy"><br>
+    <label for="health">Ill</label>
+    <input type="radio" name="health" value="Ill"><br>
+    <label for="health">Okay</label>
+    <input type="radio" name="health" value="Okay"><br>
+    <h4>Estimated Age</h4>
+    <label for="age">New Born</label>
+    <input type="radio" name="age" value="New Born"><br>
+    <label for="age">Youth</label>
+    <input type="radio" name="age" value="Youth"><br>
+    <label for="age">Adult</label>
+    <input type="radio" name="age" value="Adult"><br>
+    <button type="submit" name="new-animal-button">Log Endangered Animal</button>
+
+  </form>
+</div>
