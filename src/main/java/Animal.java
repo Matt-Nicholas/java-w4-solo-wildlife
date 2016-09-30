@@ -48,6 +48,5 @@ public class Animal extends AllAnimals{
       .executeAndFetch(Animal.class);
     }
   }
-
-
+  
 }

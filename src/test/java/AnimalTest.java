@@ -66,6 +66,13 @@ public class AnimalTest {
     secondAnimal.save();
     assertEquals(Animal.findByName(secondAnimal.getName()).get(0), secondAnimal);
   }
-  
+  @Test
+  public void updateName_updatesName_Couger(){
+    Animal testAnimal = new Animal("Goat");
+    testAnimal.save();
+    testAnimal.updateName("Couger");
+    assertEquals("Couger", Animal.findById(testAnimal.getId()).getName());
+  }
 
+  
 }

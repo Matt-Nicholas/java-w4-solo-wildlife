@@ -115,4 +115,31 @@ public class Sighting{
       .executeAndFetch(Sighting.class);
     }
   }
+  public void updateAnimalId(int animal_id){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE sightings SET animal_id=:animal_id WHERE id=:id";
+      con.createQuery(sql)
+      .addParameter("animal_id", animal_id)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+  public void updateLocation(String location){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE sightings SET location=:location WHERE id=:id";
+      con.createQuery(sql)
+      .addParameter("location", location)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+  public void updateRangerName(String ranger_name){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE sightings SET ranger_name=:ranger_name WHERE id=:id";
+      con.createQuery(sql)
+      .addParameter("ranger_name", ranger_name)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
 }

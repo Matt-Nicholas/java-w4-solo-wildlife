@@ -90,4 +90,25 @@ public class SightingTest {
     secondSighting.save();
     assertEquals(Sighting.findByTime(secondSighting.getTime()).get(0), secondSighting);
   }
+  @Test
+  public void updateAnimalId_updatesAnimalId_Couger(){
+    Sighting testSighting = new Sighting(1, "Over there", "Walker");
+    testSighting.save();
+    testSighting.updateAnimalId(2);
+    assertEquals(2, Sighting.findById(testSighting.getId()).getAnimalId());
+  }
+  @Test
+  public void updateLocation_updatesLocation_OverHere(){
+    Sighting testSighting = new Sighting(1, "Over there", "Walker");
+    testSighting.save();
+    testSighting.updateLocation("Over here");
+    assertEquals("Over here", Sighting.findById(testSighting.getId()).getLocation());
+  }
+  @Test
+  public void updateRangerName_updatesRangerName_Rick(){
+    Sighting testSighting = new Sighting(1, "Over there", "Walker");
+    testSighting.save();
+    testSighting.updateRangerName("Rick");
+    assertEquals("Rick", Sighting.findById(testSighting.getId()).getRangerName());
+  }
 }
