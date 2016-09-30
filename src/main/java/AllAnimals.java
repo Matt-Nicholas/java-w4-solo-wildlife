@@ -9,7 +9,6 @@ public class AllAnimals{
   protected String name;
   protected boolean status;
 
-
   public int getId(){
     return id;
   }
@@ -19,7 +18,6 @@ public class AllAnimals{
   public boolean status(){
     return status;
   }
-
   @Override
   public boolean equals(Object otherAllAnimals){
     if(!(otherAllAnimals instanceof AllAnimals)){
@@ -29,4 +27,13 @@ public class AllAnimals{
       return this.getName().equals(newAllAnimals.getName()) && this.getId() == newAllAnimals.getId();
     }
   }
+  public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM animals WHERE id = :id;";
+            con.createQuery(sql)
+            .addParameter("id", id)
+            .executeUpdate();
+        }
+    }
+  
 }
