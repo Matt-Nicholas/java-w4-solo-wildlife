@@ -39,6 +39,15 @@ public class Animal extends AllAnimals{
       .executeAndFetchFirst(Animal.class);
     }
   }
+  public static List<Animal> findByName(String name){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM animals WHERE name=:name";
+      return con.createQuery(sql)
+      .addParameter("name", name)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Animal.class);
+    }
+  }
 
 
 }

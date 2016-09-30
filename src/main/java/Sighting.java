@@ -83,4 +83,36 @@ public class Sighting{
       .executeAndFetchFirst(Sighting.class);
     }
   }
+  public static List<Sighting> findByLocation(String location){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM sightings WHERE location=:location";
+      return con.createQuery(sql)
+      .addParameter("location", location)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+  public static List<Sighting> findByAnimalId(int animal_id){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM sightings WHERE animal_id=:animal_id";
+      return con.createQuery(sql)
+      .addParameter("animal_id", animal_id)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+  public static List<Sighting> findByRangerName(String ranger_name){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM sightings WHERE ranger_name=:ranger_name";
+      return con.createQuery(sql)
+      .addParameter("ranger_name", ranger_name)
+      .executeAndFetch(Sighting.class);
+    }
+  }
+  public static List<Sighting> findByTime(long time){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM sightings WHERE time=:time";
+      return con.createQuery(sql)
+      .addParameter("time", time)
+      .executeAndFetch(Sighting.class);
+    }
+  }
 }

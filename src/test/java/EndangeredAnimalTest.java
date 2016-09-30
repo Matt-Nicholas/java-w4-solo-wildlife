@@ -50,4 +50,36 @@ public class EndangeredAnimalTest {
     testEndangeredAnimal.delete();
     assertEquals(null, EndangeredAnimal.findById(testEndangeredAnimal.getId()));
   }
+  @Test
+  public void findById_returnsEndangeredAnimalWithSameId_secondBook() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Goat", "Ill", "Old");
+    firstEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Mountain Beaver", "Healthy", "Youth");
+    secondEndangeredAnimal.save();
+    assertEquals(EndangeredAnimal.findById(secondEndangeredAnimal.getId()), secondEndangeredAnimal);
+  }
+  @Test
+  public void findByName_returnsEndangeredAnimalsWithSameName_EndangeredAnimal() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Goat", "Ill", "Old");
+    firstEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Mountain Beaver", "Healthy", "Youth");
+    secondEndangeredAnimal.save();
+    assertEquals(EndangeredAnimal.findByName(secondEndangeredAnimal.getName()).get(0), secondEndangeredAnimal);
+  }
+  @Test
+  public void findByAge_returnsEndangeredAnimalsWithSameAge_EndangeredAnimal() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Goat", "Ill", "Old");
+    firstEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Mountain Beaver", "Healthy", "Youth");
+    secondEndangeredAnimal.save();
+    assertEquals(EndangeredAnimal.findByAge(secondEndangeredAnimal.getAge()).get(0), secondEndangeredAnimal);
+  }
+  @Test
+  public void findByHealth_returnsEndangeredAnimalsWithSameHealth_EndangeredAnimal() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Goat", "Ill", "Old");
+    firstEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("Mountain Beaver", "Healthy", "Youth");
+    secondEndangeredAnimal.save();
+    assertEquals(EndangeredAnimal.findByHealth(secondEndangeredAnimal.getHealth()).get(0), secondEndangeredAnimal);
+  }
 }

@@ -50,4 +50,44 @@ public class SightingTest {
     testSighting.delete();
     assertEquals(null, Sighting.findById(testSighting.getId()));
   }
+  @Test
+  public void findById_returnsSightingWithSameId_secondBook() {
+    Sighting firstSighting = new Sighting(1, "Over there", "Walker");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Over here", "Rick");
+    secondSighting.save();
+    assertEquals(Sighting.findById(secondSighting.getId()), secondSighting);
+  }
+  @Test
+  public void findByLocation_returnsSightingsWithSameLocation_Sighting() {
+    Sighting firstSighting = new Sighting(1, "Over there", "Walker");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Over here", "Rick");
+    secondSighting.save();
+    assertEquals(Sighting.findByLocation(secondSighting.getLocation()).get(0), secondSighting);
+  }
+  @Test
+  public void findByAnimalId_returnsSightingsWithSameAnimalId_Sighting() {
+    Sighting firstSighting = new Sighting(1, "Over there", "Walker");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Over here", "Rick");
+    secondSighting.save();
+    assertEquals(Sighting.findByAnimalId(secondSighting.getAnimalId()).get(0), secondSighting);
+  }
+  @Test
+  public void findByRangerName_returnsSightingsWithSameRangerName_Sighting() {
+    Sighting firstSighting = new Sighting(1, "Over there", "Walker");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Over here", "Rick");
+    secondSighting.save();
+    assertEquals(Sighting.findByRangerName(secondSighting.getRangerName()).get(0), secondSighting);
+  }
+  @Test
+  public void findByTime_returnsSightingsWithSameTime_Sighting() {
+    Sighting firstSighting = new Sighting(1, "Over there", "Walker");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Over here", "Rick");
+    secondSighting.save();
+    assertEquals(Sighting.findByTime(secondSighting.getTime()).get(0), secondSighting);
+  }
 }

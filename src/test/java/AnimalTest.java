@@ -50,5 +50,22 @@ public class AnimalTest {
     testAnimal.delete();
     assertEquals(null, Animal.findById(testAnimal.getId()));
   }
+  @Test
+  public void findById_returnsAnimalWithSameId_secondBook() {
+    Animal firstAnimal = new Animal("Goat");
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("Mountain Beaver");
+    secondAnimal.save();
+    assertEquals(Animal.findById(secondAnimal.getId()), secondAnimal);
+  }
+  @Test
+  public void findByName_returnsAnimalsWithSameName_Animal() {
+    Animal firstAnimal = new Animal("Goat");
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("Mountain Beaver");
+    secondAnimal.save();
+    assertEquals(Animal.findByName(secondAnimal.getName()).get(0), secondAnimal);
+  }
   
+
 }
