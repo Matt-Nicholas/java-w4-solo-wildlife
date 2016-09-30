@@ -1,8 +1,13 @@
 <h2>Hello Ranger</h2>
 
+#if($newAnimal)
+  <h5>Thank you $rangerName the $newAnimal has been successfully logged! Keep up the good work.</h5>
+#end
+#if($error)
+  <h5 id="error-msg">$error</h5>
+#end
 <button type="button" name="animal-form">Add New Animal</button>
 <button type="button" name="endangered-animal-form">Add New Endangered Animal</button>
-
 <div id="animal-form">
 
   <form action="/animal/new" method="post">
@@ -15,7 +20,7 @@
     <button type="submit" name="new-animal-button">Log Animal</button>
   </form>
 </div>
-
+<hr>
 <div id="endangered-animal-form">
   <form action="/endangeredanimal/new" method="post">
     <label for="ranger_name">Your Name</label>
