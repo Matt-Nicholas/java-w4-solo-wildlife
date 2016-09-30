@@ -16,5 +16,10 @@ public class SightingTest {
     assertEquals(true, testSighting instanceof Sighting);
   }
 
-
+  @Test
+  public void equals_returnsTrueIfLocationAndIdAreSame_true() {
+    Sighting testSighting = new Sighting(1, "Over there", "Walker");
+    Sighting anotherSighting = new Sighting(1, "Over there", "Walker");
+    assertTrue(testSighting.equals(anotherSighting));
+  }
 }

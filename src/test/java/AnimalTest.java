@@ -16,5 +16,11 @@ public class AnimalTest {
     assertEquals(true, testAnimal instanceof Animal);
   }
 
+  @Test
+  public void equals_returnsTrueIfNameAndIdAreSame_true() {
+    Animal testAnimal = new Animal("Goat");
+    Animal anotherAnimal = new Animal("Goat");
+    assertTrue(testAnimal.equals(anotherAnimal));
+  }
   
 }

@@ -19,4 +19,14 @@ public class Animals{
   public boolean status(){
     return status;
   }
+
+  @Override
+  public boolean equals(Object otherAnimals){
+    if(!(otherAnimals instanceof Animals)){
+      return false;
+    } else {
+      Animals newAnimals = (Animals) otherAnimals;
+      return this.getName().equals(newAnimals.getName()) && this.getId() == newAnimals.getId();
+    }
+  }
 }
