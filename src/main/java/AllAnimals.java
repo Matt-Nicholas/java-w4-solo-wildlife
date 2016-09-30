@@ -3,7 +3,7 @@ import org.sql2o.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Animals{
+public class AllAnimals{
 
   protected int id;
   protected String name;
@@ -21,12 +21,12 @@ public class Animals{
   }
 
   @Override
-  public boolean equals(Object otherAnimals){
-    if(!(otherAnimals instanceof Animals)){
+  public boolean equals(Object otherAllAnimals){
+    if(!(otherAllAnimals instanceof AllAnimals)){
       return false;
     } else {
-      Animals newAnimals = (Animals) otherAnimals;
-      return this.getName().equals(newAnimals.getName()) && this.getId() == newAnimals.getId();
+      AllAnimals newAllAnimals = (AllAnimals) otherAllAnimals;
+      return this.getName().equals(newAllAnimals.getName()) && this.getId() == newAllAnimals.getId();
     }
   }
 }

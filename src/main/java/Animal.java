@@ -3,7 +3,7 @@ import org.sql2o.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Animal extends Animals{
+public class Animal extends AllAnimals{
   public static final boolean IS_ENDANGERED = false;
 
 
@@ -14,5 +14,23 @@ public class Animal extends Animals{
 
   }
 
+  public void save(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "INSERT INTO animals (name, status) VALUES (:name, :status)";
+      this.id = (int) con.createQuery(sql, true)
+      .addParameter("name", this.name)
+      .addParameter("status", this.status)
+      .executeUpdate()
+      .getKey();
+    }
+  }
+  public static List<Animal> all(){
+    try(Connection con= DB.sql2o.open()){
+      String sql = "SELECT id, name, status FROM animals";
+      return con.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Animal.class);
+    }
+  }
 
 }
