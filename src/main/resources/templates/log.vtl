@@ -1,0 +1,9 @@
+<h2>Animal Sighting Log</h2>
+
+#foreach($currentSighting in $Sighting.all())
+  <h4>Species: $Animal.findById($currentSighting.getAnimalId()).getName()</h4>
+  <h6>Logged By: $currentSighting.getRangerName()</h6>
+  <h6>Location: $currentSighting.getLocation()</h6>
+  <h6>Date/Time: $currentSighting.getTime()</h6>
+  <hr>
+#end

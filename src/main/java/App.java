@@ -8,6 +8,7 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
+
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
@@ -20,9 +21,6 @@ public class App {
       String location = request.queryParams("location");
       String ranger_name = request.queryParams("ranger_name");
       try{
-        if(name.equals("") || location.equals("") || ranger_name.equals("")){
-          throw new UnsupportedOperationException("All feilds must be filled out.");
-        }
         Animal animal = new Animal(name);
         animal.save();
         Sighting sighting = new Sighting(animal.getId(), location, ranger_name);
@@ -49,9 +47,6 @@ public class App {
       String ranger_name = request.queryParams("ranger_name");
 
       try{
-        if(name.equals("") || location.equals("") || ranger_name.equals("") || health.equals("") || age.equals("")){
-          throw new UnsupportedOperationException("All feilds must be filled out.");
-        }
         EndangeredAnimal animal = new EndangeredAnimal(name, health, age);
         animal.save();
         Sighting sighting = new Sighting(animal.getId(), location, ranger_name);
@@ -67,5 +62,18 @@ public class App {
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+
+
+
+    get("/log", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("Animal", Animal.class);
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
+      model.put("Sighting", Sighting.class);
+      model.put("template", "templates/log.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
+
 }
