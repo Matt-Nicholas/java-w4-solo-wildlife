@@ -4,24 +4,14 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class EndangeredAnimal extends AllAnimals{
+  public final boolean IS_ENDANGERED = true;
 
-  private String health;
-  private String age;
-  public static final boolean IS_ENDANGERED = true;
-
+  // CONSTRUCTOR
   public EndangeredAnimal(String name, String health, String age){
-
     this.name = name;
     this.health = health;
     this.age = age;
     this.status = IS_ENDANGERED;
-  }
-
-  public String getAge(){
-    return age;
-  }
-  public String getHealth(){
-    return health;
   }
 
   public void save(){
@@ -98,6 +88,4 @@ public class EndangeredAnimal extends AllAnimals{
       .executeUpdate();
     }
   }
-
-
 }

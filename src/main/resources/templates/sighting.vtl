@@ -1,0 +1,27 @@
+<h2>Edit Sighting Number: $sighting.getId()</h2>
+#if($success)
+  <h3>$success</h3>
+#end
+#if($error)
+  <h3>$error</h3>
+#end
+<form action="/update/animal/$sighting.getId()" method="post">
+  <label for="name">Species</label><br>
+  <input type="text" name="name" value="$Animal.findById($sighting.getAnimalId()).getName()"><br>
+
+  <label for="ranger_name">Ranger Name</label><br>
+  <input type="text" name="ranger_name" value="$sighting.getRangerName()"><br>
+
+  <label for="location">Location</label><br>
+  <input type="text" name="location" value="$sighting.getLocation()"><br>
+
+
+  #if($Animal.findById($sighting.getAnimalId()).getStatus() == true)
+  <label for="health">Health</label><br>
+  <input type="text" name="health" value="$Animal.findById($sighting.getAnimalId()).getHealth()"><br>
+
+  <label for="age">Age</label><br>
+  <input type="text" name="age" value="$Animal.findById($sighting.getAnimalId()).getAge()"><br>
+  #end
+  <button type="submit">Update Sighting</button>
+</form>

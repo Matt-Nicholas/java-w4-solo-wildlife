@@ -1,7 +1,9 @@
 import java.util.List;
 import org.sql2o.*;
-import java.util.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Sighting{
 
@@ -34,6 +36,10 @@ public class Sighting{
   }
   public long getTime(){
     return time;
+  }
+  public Date getDate(long time){
+    Date date = new Date(time);
+    return date;
   }
 
 
@@ -149,6 +155,14 @@ public class Sighting{
       .addParameter("ranger_name", ranger_name)
       .addParameter("id", id)
       .executeUpdate();
+    }
+  }
+  public Integer findAnimalId(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT animal_id FROM animals_sightings WHERE id=:id";
+      return con.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeAndFetchFirst(Integer.class);
     }
   }
 }

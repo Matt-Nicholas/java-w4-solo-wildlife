@@ -1,9 +1,20 @@
-<h2>Animal Sighting Log</h2>
+<br><h2>Animal Sighting Log</h2>
 
-#foreach($currentSighting in $Sighting.all())
+#foreach($currentSighting in $sightings)
   <h4>Species: $Animal.findById($currentSighting.getAnimalId()).getName()</h4>
   <h6>Logged By: $currentSighting.getRangerName()</h6>
+  <h6>Date/Time: $currentSighting.getDate($currentSighting.getTime())</h6>
   <h6>Location: $currentSighting.getLocation()</h6>
-  <h6>Date/Time: $currentSighting.getTime()</h6>
+  <h6>Endangered: $Animal.findById($currentSighting.getAnimalId()).getStatus()</h6>
+  #if($Animal.findById($currentSighting.getAnimalId()).getStatus() == true)
+    <h6>Health: $EndangeredAnimal.findById($currentSighting.getAnimalId()).getHealth()</h6>
+    <h6>Age: $EndangeredAnimal.findById($currentSighting.getAnimalId()).getAge()</h6>
+    <a href="/log/health/$currentSighting.getId()"><small>View All Animal Sightings With This Health Rating</small></a><br>
+    <a href="/log/age/$currentSighting.getId()"><small>View All Animal Sightings In This Age Range</small></a><br>
+  #end
+  <a href="/log/location/$currentSighting.getId()"><small>View All Animal Sightings At This Location</small></a><br>
+  <a href="/log/ranger/$currentSighting.getId()"><small>View All Animal Sightings Logged By This Ranger</small></a><br>
+  <a href="/log/species/$currentSighting.getId()"><small>View All Animal Sightings Of This Species</small></a><br>
+  <a href="/log/$currentSighting.getId()"><small>Edit This Animal Sighting</small></a><br>
   <hr>
 #end

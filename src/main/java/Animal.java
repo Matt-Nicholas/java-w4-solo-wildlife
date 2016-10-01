@@ -4,9 +4,9 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Animal extends AllAnimals{
-  public static final boolean IS_ENDANGERED = false;
+  public final boolean IS_ENDANGERED = false;
 
-
+  // CONSTRUCTOR
   public Animal(String name){
     this.name = name;
     this.status = IS_ENDANGERED;
@@ -48,5 +48,5 @@ public class Animal extends AllAnimals{
       .executeAndFetch(Animal.class);
     }
   }
-  
+
 }

@@ -4,7 +4,9 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class AllAnimals{
-
+  // ????Getters will not work unless declared here and in sub class????
+  protected String health;
+  protected String age;
   protected int id;
   protected String name;
   protected boolean status;
@@ -15,8 +17,14 @@ public class AllAnimals{
   public String getName(){
     return name;
   }
-  public boolean status(){
+  public boolean getStatus(){
     return status;
+  }
+  public String getAge(){
+    return age;
+  }
+  public String getHealth(){
+    return health;
   }
   @Override
   public boolean equals(Object otherAllAnimals){
