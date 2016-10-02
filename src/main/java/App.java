@@ -169,5 +169,18 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/log/location/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
+
+      model.put("Animal", Animal.class);
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
+      model.put("Sighting", Sighting.class);
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("sightings",  Sighting.findByLocation(sighting.getLocation()));
+      model.put("template", "templates/log.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
