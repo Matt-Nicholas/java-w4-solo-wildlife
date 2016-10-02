@@ -228,7 +228,19 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
+    post("/delete/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
+      Animal animal = Animal.findById(sighting.getAnimalId());
+      animal.delete();
+      sighting.deleteJoin();
+      sighting.delete();
+      model.put("Animal", Animal.class);
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
+      model.put("sightings", Sighting.all());
+      model.put("template", "templates/log.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 }

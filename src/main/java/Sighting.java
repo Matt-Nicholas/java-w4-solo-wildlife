@@ -90,6 +90,14 @@ public class Sighting{
       .executeUpdate();
     }
   }
+  public void deleteJoin(){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "DELETE FROM animals_sightings WHERE sighting_id=:id";
+      con.createQuery(sql)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
   public static Sighting findById(int id){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM sightings WHERE id=:id";

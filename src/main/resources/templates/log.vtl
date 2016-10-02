@@ -29,6 +29,10 @@
         <a href="/log/health/$currentSighting.getId()"><small>View All Animal Sightings With This Health Rating</small></a><br>
         <a href="/log/age/$currentSighting.getId()"><small>View All Animal Sightings In This Age Range</small></a><br>
       #end
+      <form action="/delete/$currentSighting.getId()" method="post">
+        <input type="hidden" name="delete"><br>
+        <button type="submit" name="delete">Delete Sighting</button>
+      </form>
     </div>
   </div>
 #end
