@@ -10,7 +10,6 @@ public class Animal extends AllAnimals{
   public Animal(String name){
     this.name = name;
     this.status = IS_ENDANGERED;
-
   }
   public void save(){
     try(Connection con = DB.sql2o.open()){
@@ -48,5 +47,4 @@ public class Animal extends AllAnimals{
       .executeAndFetch(Animal.class);
     }
   }
-
 }

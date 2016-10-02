@@ -21,7 +21,6 @@ public class Sighting{
     time = new Date().getTime();
 
   }
-
   public int getId(){
     return id;
   }
@@ -41,8 +40,6 @@ public class Sighting{
     Date date = new Date(time);
     return date;
   }
-
-
   @Override
   public boolean equals(Object otherSighting){
     if(!(otherSighting instanceof Sighting)){
@@ -52,8 +49,6 @@ public class Sighting{
       return this.getLocation().equals(newSighting.getLocation()) && this.getId() == newSighting.getId();
     }
   }
-
-
   public void save(){
     try(Connection con = DB.sql2o.open()){
       String sql = "INSERT INTO sightings (animal_id, location, ranger_name, time) VALUES (:animal_id, :location, :ranger_name, :time)";

@@ -6,23 +6,17 @@
 #if($error)
   <h5>$error</h5 >
 #end
-
 #if($Animal.findById($sighting.getAnimalId()).getStatus() == false)
   <form action="/update/animal/$sighting.getId()" method="post">
 #else
   <form action="/update/endangered-animal/$sighting.getId()" method="post">
 #end
-
   <label for="name">Species</label><br>
   <input type="text" name="name" value="$Animal.findById($sighting.getAnimalId()).getName()"><br>
-
   <label for="ranger_name">Ranger Name</label><br>
   <input type="text" name="ranger_name" value="$sighting.getRangerName()"><br>
-
   <label for="location">Location</label><br>
   <input type="text" name="location" value="$sighting.getLocation()"><br>
-
-
   #if($Animal.findById($sighting.getAnimalId()).getStatus() == true)
   <h4>Health Status</h4>
   #foreach($HealthDescription in $EndangeredAnimal.getHealthArray())
@@ -30,7 +24,6 @@
   <input type="radio" name="health" value="$HealthDescription"><br>
   #end
   <h4>Estimated Age</h4>
-
   #foreach($AgeDescription in $EndangeredAnimal.getAgeArray())
   <label for="age">$AgeDescription</label>
   <input type="radio" name="age" value="$AgeDescription"><br>

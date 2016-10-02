@@ -184,21 +184,21 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
       Animal animal = Animal.findById(sighting.getAnimalId());
-        try{
-          if(request.queryParams("name").equals("") || request.queryParams("location").equals("") || request.queryParams("ranger_name").equals("")){
-            throw new UnsupportedOperationException("Empty Text Field");
-          }
-          model.put("success", "Sucessfully updated");
-          animal.updateName(request.queryParams("name"));
-          sighting.updateRangerName(request.queryParams("ranger_name"));
-          sighting.updateLocation(request.queryParams("location"));
-        } catch (java.lang.UnsupportedOperationException e) {
-          String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
-          model.put("error", error);
+      try{
+        if(request.queryParams("name").equals("") || request.queryParams("location").equals("") || request.queryParams("ranger_name").equals("")){
+          throw new UnsupportedOperationException("Empty Text Field");
         }
-        model.put("Animal", Animal.class);
-        model.put("EndangeredAnimal", EndangeredAnimal.class);
-        model.put("sighting", sighting);
+        model.put("success", "Sucessfully updated");
+        animal.updateName(request.queryParams("name"));
+        sighting.updateRangerName(request.queryParams("ranger_name"));
+        sighting.updateLocation(request.queryParams("location"));
+      } catch (java.lang.UnsupportedOperationException e) {
+        String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
+        model.put("error", error);
+      }
+      model.put("Animal", Animal.class);
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
+      model.put("sighting", sighting);
       model.put("template", "templates/sighting.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -207,24 +207,24 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
       EndangeredAnimal animal = EndangeredAnimal.findById(sighting.getAnimalId());
-        try{
-          if(request.queryParams("name").equals("") || request.queryParams("location").equals("") || request.queryParams("ranger_name").equals("") || request.queryParams("health") == null || request.queryParams("age") == null){
-              throw new UnsupportedOperationException("Empty Text Field");
-              }
-          model.put("success", "Sucessfully updated");
-          animal.updateName(request.queryParams("name"));
-          animal.updateHealth(request.queryParams("health"));
-          animal.updateAge(request.queryParams("age"));
-          sighting.updateRangerName(request.queryParams("ranger_name"));
-          sighting.updateLocation(request.queryParams("location"));
-        } catch (java.lang.UnsupportedOperationException e) {
-          String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
-          model.put("error", error);
+      try{
+        if(request.queryParams("name").equals("") || request.queryParams("location").equals("") || request.queryParams("ranger_name").equals("") || request.queryParams("health") == null || request.queryParams("age") == null){
+          throw new UnsupportedOperationException("Empty Text Field");
         }
-        model.put("Animal", Animal.class);
-        model.put("EndangeredAnimal", EndangeredAnimal.class);
-        model.put("sighting", sighting);
-        model.put("template", "templates/sighting.vtl");
+        model.put("success", "Sucessfully updated");
+        animal.updateName(request.queryParams("name"));
+        animal.updateHealth(request.queryParams("health"));
+        animal.updateAge(request.queryParams("age"));
+        sighting.updateRangerName(request.queryParams("ranger_name"));
+        sighting.updateLocation(request.queryParams("location"));
+      } catch (java.lang.UnsupportedOperationException e) {
+        String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
+        model.put("error", error);
+      }
+      model.put("Animal", Animal.class);
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
+      model.put("sighting", sighting);
+      model.put("template", "templates/sighting.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -241,6 +241,5 @@ public class App {
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
   }
 }

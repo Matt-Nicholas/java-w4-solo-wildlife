@@ -16,14 +16,12 @@ public class EndangeredAnimal extends AllAnimals{
     this.age = age;
     this.status = IS_ENDANGERED;
   }
-
   public static List<String> getHealthArray(){
     return healthArray;
   }
   public static List<String> getAgeArray(){
     return ageArray;
   }
-
   public void save(){
     try(Connection con = DB.sql2o.open()){
       String sql = "INSERT INTO animals (name, health, age, status) VALUES (:name, :health, :age, :status)";
@@ -80,7 +78,6 @@ public class EndangeredAnimal extends AllAnimals{
       .executeAndFetch(EndangeredAnimal.class);
     }
   }
-
   public static List<EndangeredAnimal> findByHealth(String health){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM animals WHERE health=:health";
@@ -90,7 +87,6 @@ public class EndangeredAnimal extends AllAnimals{
       .executeAndFetch(EndangeredAnimal.class);
     }
   }
-
   public void updateHealth(String health){
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET health=:health WHERE id=:id";

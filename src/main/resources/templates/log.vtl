@@ -2,10 +2,8 @@
 #if($filter)
   <h6><em>(Filtered by $filter)</em></h6>
 #end
-
 #foreach($currentSighting in $sightings)
 <hr>
-
   <div class="row">
     <div class="col-sm-6">
       <h4>Species: $Animal.findById($currentSighting.getAnimalId()).getName()</h4>
@@ -24,7 +22,6 @@
       <a href="/log/ranger/$currentSighting.getId()"><small>View All Animal Sightings Logged By This Ranger</small></a><br>
       <a href="/log/species/$currentSighting.getId()"><small>View All Animal Sightings Of This Species</small></a><br>
       <a href="/log/status/$currentSighting.getId()"><small>View All Animal Sightings With This Status</small></a><br>
-
       #if($Animal.findById($currentSighting.getAnimalId()).getStatus() == true)
         <a href="/log/health/$currentSighting.getId()"><small>View All Animal Sightings With This Health Rating</small></a><br>
         <a href="/log/age/$currentSighting.getId()"><small>View All Animal Sightings In This Age Range</small></a><br>
