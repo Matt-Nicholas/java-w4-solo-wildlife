@@ -72,7 +72,7 @@ public class SightingTest {
     firstSighting.save();
     Sighting secondSighting = new Sighting(2, "Over here", "Rick");
     secondSighting.save();
-    assertEquals(Sighting.findByAnimalId(secondSighting.getAnimalId()).get(0), secondSighting);
+    assertEquals(Sighting.findByAnimalId(secondSighting.getAnimalId()), secondSighting);
   }
   @Test
   public void findByRangerName_returnsSightingsWithSameRangerName_Sighting() {
