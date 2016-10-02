@@ -3,6 +3,8 @@ import java.util.Map;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class App {
   public static void main(String[] args) {
@@ -193,6 +195,30 @@ public class App {
       model.put("animals", Animal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  Sighting.findByRangerName(sighting.getRangerName()));
+      model.put("template", "templates/log.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+
+    get("/log/species/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
+      List<Sighting> sightings = new ArrayList<Sighting>();
+      Animal animal = Animal.findById(sighting.getAnimalId());
+
+      for(Animal currentAnimal : Animal.findByName(animal.getName())){
+        sightings.add(Sighting.findByAnimalId(currentAnimal.getId()));
+      }
+
+
+      String species = Animal.findById(sighting.getAnimalId()).getName();
+      model.put("animals", Animal.findByName(species));
+      model.put("Animal", Animal.class);
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
+      model.put("Sighting", Sighting.class);
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("sightings",  sightings);
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());

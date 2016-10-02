@@ -106,12 +106,12 @@ public class Sighting{
       .executeAndFetch(Sighting.class);
     }
   }
-  public static List<Sighting> findByAnimalId(int animal_id){
+  public static Sighting findByAnimalId(int animal_id){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM sightings WHERE animal_id=:animal_id";
       return con.createQuery(sql)
       .addParameter("animal_id", animal_id)
-      .executeAndFetch(Sighting.class);
+      .executeAndFetchFirst(Sighting.class);
     }
   }
   public static List<Sighting> findByRangerName(String ranger_name){
