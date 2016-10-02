@@ -70,6 +70,40 @@ ALTER SEQUENCE animals_id_seq OWNED BY animals.id;
 
 
 --
+-- Name: animals_sightings; Type: TABLE; Schema: public; Owner: alanamorosky
+--
+
+CREATE TABLE animals_sightings (
+    id integer NOT NULL,
+    animal_id integer,
+    sighting_id integer
+);
+
+
+ALTER TABLE animals_sightings OWNER TO alanamorosky;
+
+--
+-- Name: animals_sightings_id_seq; Type: SEQUENCE; Schema: public; Owner: alanamorosky
+--
+
+CREATE SEQUENCE animals_sightings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE animals_sightings_id_seq OWNER TO alanamorosky;
+
+--
+-- Name: animals_sightings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: alanamorosky
+--
+
+ALTER SEQUENCE animals_sightings_id_seq OWNED BY animals_sightings.id;
+
+
+--
 -- Name: sightings; Type: TABLE; Schema: public; Owner: alanamorosky
 --
 
@@ -116,6 +150,13 @@ ALTER TABLE ONLY animals ALTER COLUMN id SET DEFAULT nextval('animals_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: alanamorosky
 --
 
+ALTER TABLE ONLY animals_sightings ALTER COLUMN id SET DEFAULT nextval('animals_sightings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: alanamorosky
+--
+
 ALTER TABLE ONLY sightings ALTER COLUMN id SET DEFAULT nextval('sightings_id_seq'::regclass);
 
 
@@ -131,7 +172,22 @@ COPY animals (id, name, health, age, status) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
 --
 
-SELECT pg_catalog.setval('animals_id_seq', 1, false);
+SELECT pg_catalog.setval('animals_id_seq', 26, true);
+
+
+--
+-- Data for Name: animals_sightings; Type: TABLE DATA; Schema: public; Owner: alanamorosky
+--
+
+COPY animals_sightings (id, animal_id, sighting_id) FROM stdin;
+\.
+
+
+--
+-- Name: animals_sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
+--
+
+SELECT pg_catalog.setval('animals_sightings_id_seq', 25, true);
 
 
 --
@@ -146,7 +202,7 @@ COPY sightings (id, animal_id, location, "time", ranger_name) FROM stdin;
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
 --
 
-SELECT pg_catalog.setval('sightings_id_seq', 1, false);
+SELECT pg_catalog.setval('sightings_id_seq', 26, true);
 
 
 --
@@ -155,6 +211,14 @@ SELECT pg_catalog.setval('sightings_id_seq', 1, false);
 
 ALTER TABLE ONLY animals
     ADD CONSTRAINT animals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: animals_sightings_pkey; Type: CONSTRAINT; Schema: public; Owner: alanamorosky
+--
+
+ALTER TABLE ONLY animals_sightings
+    ADD CONSTRAINT animals_sightings_pkey PRIMARY KEY (id);
 
 
 --
