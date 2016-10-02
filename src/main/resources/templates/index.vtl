@@ -40,19 +40,14 @@
         <label for="health">$HealthDescription</label>
         <input type="radio" name="health" value="$HealthDescription"><br>
         #end
+        <h4>Estimated Age</h4>
 
         #foreach($AgeDescription in $EndangeredAnimal.getAgeArray())
-        <label for="age">$HealthDescription</label>
+        <label for="age">$AgeDescription</label>
         <input type="radio" name="age" value="$AgeDescription"><br>
         #end
 
-        <h4>Estimated Age</h4>
-        <label for="age">New Born</label>
-        <input type="radio" name="age" value="New Born"><br>
-        <label for="age">Youth</label>
-        <input type="radio" name="age" value="Youth"><br>
-        <label for="age">Adult</label>
-        <input type="radio" name="age" value="Adult"><br>
+
         <button type="submit" name="new-animal-button">Log Sighting</button>
 
       </form>

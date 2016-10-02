@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class EndangeredAnimal extends AllAnimals{
   public static final List<String> healthArray = Arrays.asList("Healthy", "Ill", "Okay");
-  public static final List<String> ageArray = Arrays.asList("New Born", "Young", "Old");
+  public static final List<String> ageArray = Arrays.asList("New Born", "Young", "Adult");
   public final boolean IS_ENDANGERED = true;
 
   // CONSTRUCTOR

@@ -164,6 +164,7 @@ public class App {
         String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
         model.put("error", error);
       }
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -175,8 +176,9 @@ public class App {
       String age = request.queryParams("age");
       String location = request.queryParams("location");
       String ranger_name = request.queryParams("ranger_name");
+      System.out.println("***** age *****" + age);
       try{
-        if(name.equals("") || location.equals("") || ranger_name.equals("") || health.equals("") || age.equals("")){
+        if(name.equals("") || location.equals("") || ranger_name.equals("") || health == null || age == null){
           throw new UnsupportedOperationException("Empty Text Field");
         }
         EndangeredAnimal animal = new EndangeredAnimal(name, health, age);
@@ -191,6 +193,7 @@ public class App {
         String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
         model.put("error", error);
       }
+      model.put("EndangeredAnimal", EndangeredAnimal.class);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -208,7 +211,7 @@ public class App {
           sighting.updateRangerName(request.queryParams("ranger_name"));
           sighting.updateLocation(request.queryParams("location"));
         } catch (java.lang.UnsupportedOperationException e) {
-          String error = "Oops! It looks like on of the text fields was empty. Sorry for the inconvenience :(";
+          String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
           model.put("error", error);
         }
         model.put("Animal", Animal.class);
@@ -223,7 +226,7 @@ public class App {
       Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
       EndangeredAnimal animal = EndangeredAnimal.findById(sighting.getAnimalId());
         try{
-          if(request.queryParams("name").equals("") || request.queryParams("location").equals("") || request.queryParams("ranger_name").equals("") || request.queryParams("health").equals("") || request.queryParams("age").equals("")){
+          if(request.queryParams("name").equals("") || request.queryParams("location").equals("") || request.queryParams("ranger_name").equals("") || request.queryParams("health") == null || request.queryParams("age") == null){
               throw new UnsupportedOperationException("Empty Text Field");
               }
           model.put("success", "Sucessfully updated");
@@ -233,7 +236,7 @@ public class App {
           sighting.updateRangerName(request.queryParams("ranger_name"));
           sighting.updateLocation(request.queryParams("location"));
         } catch (java.lang.UnsupportedOperationException e) {
-          String error = "Oops! It looks like on of the text fields was empty. Sorry for the inconvenience :(";
+          String error = "Oops! All feilds must be completed. Sorry for the inconvenience :(";
           model.put("error", error);
         }
         model.put("Animal", Animal.class);
