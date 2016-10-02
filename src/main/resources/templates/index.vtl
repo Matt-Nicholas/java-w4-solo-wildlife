@@ -35,12 +35,17 @@
         <label for="name">Endangered Animal Species</label><br>
         <input type="text" name="name" id="name"><br>
         <h4>Health Status</h4>
-        <label for="health">Healthy</label>
-        <input type="radio" name="health" value="Healthy"><br>
-        <label for="health">Ill</label>
-        <input type="radio" name="health" value="Ill"><br>
-        <label for="health">Okay</label>
-        <input type="radio" name="health" value="Okay"><br>
+
+        #foreach($HealthDescription in $EndangeredAnimal.getHealthArray())
+        <label for="health">$HealthDescription</label>
+        <input type="radio" name="health" value="$HealthDescription"><br>
+        #end
+
+        #foreach($AgeDescription in $EndangeredAnimal.getAgeArray())
+        <label for="age">$HealthDescription</label>
+        <input type="radio" name="age" value="$AgeDescription"><br>
+        #end
+
         <h4>Estimated Age</h4>
         <label for="age">New Born</label>
         <input type="radio" name="age" value="New Born"><br>

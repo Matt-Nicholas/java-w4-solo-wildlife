@@ -2,8 +2,11 @@ import java.util.List;
 import org.sql2o.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 
 public class EndangeredAnimal extends AllAnimals{
+  public static final List<String> healthArray = Arrays.asList("Healthy", "Ill", "Okay");
+  public static final List<String> ageArray = Arrays.asList("New Born", "Young", "Old");
   public final boolean IS_ENDANGERED = true;
 
   // CONSTRUCTOR
@@ -12,6 +15,13 @@ public class EndangeredAnimal extends AllAnimals{
     this.health = health;
     this.age = age;
     this.status = IS_ENDANGERED;
+  }
+
+  public static List<String> getHealthArray(){
+    return healthArray;
+  }
+  public static List<String> getAgeArray(){
+    return ageArray;
   }
 
   public void save(){
@@ -61,6 +71,16 @@ public class EndangeredAnimal extends AllAnimals{
       .executeAndFetch(EndangeredAnimal.class);
     }
   }
+  public static List<EndangeredAnimal> findByStatus(boolean status){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "SELECT * FROM animals WHERE status=:status";
+      return con.createQuery(sql)
+      .addParameter("status", status)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(EndangeredAnimal.class);
+    }
+  }
+
   public static List<EndangeredAnimal> findByHealth(String health){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT * FROM animals WHERE health=:health";
@@ -70,6 +90,7 @@ public class EndangeredAnimal extends AllAnimals{
       .executeAndFetch(EndangeredAnimal.class);
     }
   }
+
   public void updateHealth(String health){
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE animals SET health=:health WHERE id=:id";
