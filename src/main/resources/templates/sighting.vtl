@@ -24,20 +24,17 @@
 
 
   #if($Animal.findById($sighting.getAnimalId()).getStatus() == true)
-    <h4>Health Status</h4>
-    <label for="health">Healthy</label>
-    <input type="radio" name="health" value="Healthy"><br>
-    <label for="health">Ill</label>
-    <input type="radio" name="health" value="Ill"><br>
-    <label for="health">Okay</label>
-    <input type="radio" name="health" value="Okay"><br>
-    <h4>Estimated Age</h4>
-    <label for="age">New Born</label>
-    <input type="radio" name="age" value="New Born"><br>
-    <label for="age">Youth</label>
-    <input type="radio" name="age" value="Youth"><br>
-    <label for="age">Adult</label>
-    <input type="radio" name="age" value="Adult"><br>
+  <h4>Health Status</h4>
+  #foreach($HealthDescription in $EndangeredAnimal.getHealthArray())
+  <label for="health">$HealthDescription</label>
+  <input type="radio" name="health" value="$HealthDescription"><br>
+  #end
+  <h4>Estimated Age</h4>
+
+  #foreach($AgeDescription in $EndangeredAnimal.getAgeArray())
+  <label for="age">$AgeDescription</label>
+  <input type="radio" name="age" value="$AgeDescription"><br>
+  #end
   #end
   <button type="submit">Update Sighting</button>
 </form>

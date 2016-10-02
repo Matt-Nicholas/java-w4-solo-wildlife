@@ -22,9 +22,6 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings", Sighting.all());
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
@@ -33,7 +30,6 @@ public class App {
     get("/log/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Sighting sighting = Sighting.findById(Integer.parseInt(request.params(":id")));
-      // if(Animal.findById(sighting.getAnimalId()) == );
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
       model.put("sighting", sighting);
@@ -48,9 +44,6 @@ public class App {
       model.put("filter", "Location");
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  Sighting.findByLocation(sighting.getLocation()));
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
@@ -62,9 +55,6 @@ public class App {
       model.put("filter", "Ranger");
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  Sighting.findByRangerName(sighting.getRangerName()));
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
@@ -81,8 +71,6 @@ public class App {
       model.put("filter", "Species");
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  sightings);
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
@@ -96,11 +84,9 @@ public class App {
       for(EndangeredAnimal currentAnimal : EndangeredAnimal.findByHealth(animal.getHealth())){
         sightings.add(Sighting.findByAnimalId(currentAnimal.getId()));
       }
-      model.put("filter", "Health");
+      model.put("filter", "Health Status");
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  sightings);
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
@@ -117,8 +103,6 @@ public class App {
       model.put("filter", "Age");
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  sightings);
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
@@ -135,8 +119,6 @@ public class App {
       model.put("filter", "Status");
       model.put("Animal", Animal.class);
       model.put("EndangeredAnimal", EndangeredAnimal.class);
-      model.put("Sighting", Sighting.class);
-      model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings",  sightings);
       model.put("template", "templates/log.vtl");
       return new ModelAndView(model, layout);
