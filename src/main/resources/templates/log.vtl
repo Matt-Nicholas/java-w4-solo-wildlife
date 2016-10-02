@@ -1,20 +1,37 @@
 <br><h2>Animal Sighting Log</h2>
 
+#if($success)
+  <h5><em>Thank you $rangerName the $newAnimal has been successfully logged! Keep up the good work.</em></h5>
+#end
+#if($error)
+  <h5 id="error-msg"><strong>$error</strong></h5>
+#end
+
 #foreach($currentSighting in $sightings)
-  <h4>Species: $Animal.findById($currentSighting.getAnimalId()).getName()</h4>
-  <h6>Logged By: $currentSighting.getRangerName()</h6>
-  <h6>Date/Time: $currentSighting.getDate($currentSighting.getTime())</h6>
-  <h6>Location: $currentSighting.getLocation()</h6>
-  <h6>Endangered: $Animal.findById($currentSighting.getAnimalId()).getStatus()</h6>
-  #if($Animal.findById($currentSighting.getAnimalId()).getStatus() == true)
-    <h6>Health: $EndangeredAnimal.findById($currentSighting.getAnimalId()).getHealth()</h6>
-    <h6>Age: $EndangeredAnimal.findById($currentSighting.getAnimalId()).getAge()</h6>
-    <a href="/log/health/$currentSighting.getId()"><small>View All Animal Sightings With This Health Rating</small></a><br>
-    <a href="/log/age/$currentSighting.getId()"><small>View All Animal Sightings In This Age Range</small></a><br>
-  #end
-  <a href="/log/location/$currentSighting.getId()"><small>View All Animal Sightings At This Location</small></a><br>
-  <a href="/log/ranger/$currentSighting.getId()"><small>View All Animal Sightings Logged By This Ranger</small></a><br>
-  <a href="/log/species/$currentSighting.getId()"><small>View All Animal Sightings Of This Species</small></a><br>
-  <a href="/log/$currentSighting.getId()"><small>Edit This Animal Sighting</small></a><br>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Species: $Animal.findById($currentSighting.getAnimalId()).getName()</h4>
+      <h6>Logged By: $currentSighting.getRangerName()</h6>
+      <h6>Date/Time: $currentSighting.getDate($currentSighting.getTime())</h6>
+      <h6>Location: $currentSighting.getLocation()</h6>
+      <h6>Endangered: $Animal.findById($currentSighting.getAnimalId()).getStatus()</h6>
+      #if($Animal.findById($currentSighting.getAnimalId()).getStatus() == true)
+        <h6>Health: $EndangeredAnimal.findById($currentSighting.getAnimalId()).getHealth()</h6>
+        <h6>Age: $EndangeredAnimal.findById($currentSighting.getAnimalId()).getAge()</h6>
+      #end
+    </div>
+    <div class="col-sm-6">
+      <a href="/log/$currentSighting.getId()"><small><strong>Edit This Animal Sighting</strong></small></a><br>
+
+      <a href="/log/location/$currentSighting.getId()"><small>View All Animal Sightings At This Location</small></a><br>
+      <a href="/log/ranger/$currentSighting.getId()"><small>View All Animal Sightings Logged By This Ranger</small></a><br>
+      <a href="/log/species/$currentSighting.getId()"><small>View All Animal Sightings Of This Species</small></a><br>
+      #if($Animal.findById($currentSighting.getAnimalId()).getStatus() == true)
+        <a href="/log/health/$currentSighting.getId()"><small>View All Animal Sightings With This Health Rating</small></a><br>
+        <a href="/log/age/$currentSighting.getId()"><small>View All Animal Sightings In This Age Range</small></a><br>
+      #end
+    </div>
+
+  </div>
   <hr>
 #end

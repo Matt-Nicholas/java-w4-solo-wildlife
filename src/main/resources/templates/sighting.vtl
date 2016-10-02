@@ -1,11 +1,17 @@
 <h2>Edit Sighting Number: $sighting.getId()</h2>
 #if($success)
-  <h3>$success</h3>
+  <h5>$success</h5 >
 #end
 #if($error)
-  <h3>$error</h3>
+  <h5>$error</h5 >
 #end
-<form action="/update/animal/$sighting.getId()" method="post">
+
+#if($Animal.findById($sighting.getAnimalId()).getStatus() == false)
+  <form action="/update/animal/$sighting.getId()" method="post">
+#else
+  <form action="/update/endangered-animal/$sighting.getId()" method="post">
+#end
+
   <label for="name">Species</label><br>
   <input type="text" name="name" value="$Animal.findById($sighting.getAnimalId()).getName()"><br>
 
@@ -17,11 +23,20 @@
 
 
   #if($Animal.findById($sighting.getAnimalId()).getStatus() == true)
-  <label for="health">Health</label><br>
-  <input type="text" name="health" value="$Animal.findById($sighting.getAnimalId()).getHealth()"><br>
-
-  <label for="age">Age</label><br>
-  <input type="text" name="age" value="$Animal.findById($sighting.getAnimalId()).getAge()"><br>
+    <h4>Health Status</h4>
+    <label for="health">Healthy</label>
+    <input type="radio" name="health" value="Healthy"><br>
+    <label for="health">Ill</label>
+    <input type="radio" name="health" value="Ill"><br>
+    <label for="health">Okay</label>
+    <input type="radio" name="health" value="Okay"><br>
+    <h4>Estimated Age</h4>
+    <label for="age">New Born</label>
+    <input type="radio" name="age" value="New Born"><br>
+    <label for="age">Youth</label>
+    <input type="radio" name="age" value="Youth"><br>
+    <label for="age">Adult</label>
+    <input type="radio" name="age" value="Adult"><br>
   #end
   <button type="submit">Update Sighting</button>
 </form>
